@@ -16,9 +16,9 @@ if os.path.isfile('save.txt'): #checks if save file already exists
 def AddApps(): 
     for files in frame.winfo_children(): #
         files.destroy() #refreshes added files
-    filename = filedialog.askopenfilename(initialdir="/", title="Select a File", #Let's you select which file you want to execute
-                                          filetypes=(("Executables","*.exe"), ("all files","*.*")))#Can only run executables, 
-                                          #can look through all the files
+    filename = filedialog.askopenfilename(initialdir="/", title="Select a File", #title on the top
+                                          filetypes=(("Executables","*.exe"), ("all files","*.*"))) #Can only run executables or all files, 
+                                          
     apps.append(filename) #adds file into apps array
     for app in apps:
         label = tk.Label(frame,text= app, bg="gray") #prints out the text
@@ -44,7 +44,7 @@ canvas.pack() #Runs the background
 frame = tk.Frame(root,bg="white")
 frame.place(relwidth = 0.8, relheight=0.6, relx=0.1, rely=0.1)
 
-OpenFiles=tk.Button(root, text ="Open File",padx=10,pady=5,
+OpenFiles=tk.Button(root, text ="Open File",padx=10,pady=5, #UI for the buttons
                     fg="white",bg="#000000", command=AddApps)
 OpenFiles.pack()
 
