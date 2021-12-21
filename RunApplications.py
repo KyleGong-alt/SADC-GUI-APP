@@ -1,45 +1,42 @@
-import tkinter as tk
-from tkinter import filedialog, Text #helps pick files, prints text
+import tkinter as tk 
+from tkinter import filedialog, Text #filedialog lets us run the applications, Text is needed for printing text in UI
 import os #allows us to run apps
 
 root = tk.Tk() #holds everything
-apps = []
+apps = [] #initalize array for apps
 
-bool_erase = 0
+bool_erase = 0 #initalize bool for erasing files
 
 if os.path.isfile('save.txt'): #checks if save file already exists
-    with open('save.txt','r') as f:
+    with open('save.txt','r') as f: #open save file
         tempApps = f.read() #reads into savefile
         tempApps = tempApps.split(',') #split applications when there's a comma
         apps = [x for x in tempApps if x.strip()] #Erases extra whitespace and nonexisting apps
         
-def AddApps():
-    for files in frame.winfo_children():
+def AddApps(): 
+    for files in frame.winfo_children(): #
         files.destroy() #refreshes added files
-
-    filename = filedialog.askopenfilename(initialdir="/", title="Select a File",
-                                          filetypes=(("Executables","*.exe"), ("all files","*.*")))
-    apps.append(filename) #adds file into apps
+    filename = filedialog.askopenfilename(initialdir="/", title="Select a File", #Let's you select which file you want to execute
+                                          filetypes=(("Executables","*.exe"), ("all files","*.*")))#Can only run executables, 
+                                          #can look through all the files
+    apps.append(filename) #adds file into apps array
     for app in apps:
-        label = tk.Label(frame,text= app, bg="gray")
+        label = tk.Label(frame,text= app, bg="gray") #prints out the text
         label.pack()
 
 def RunApps():
     for app in apps:
-        os.startfile(app)
+        os.startfile(app) #Starts applications
 
 def EraseSave():
-    global bool_erase
+    global bool_erase #make a global variable
     for files in frame.winfo_children():
         files.destroy() #refreshes added files
     if os.path.exists("save.txt"): #check if save file exists
         os.remove("save.txt") #remove the save file
     bool_erase = 1 #boolean so we never save the files
     
-
-
-
-#BACKGROUND CODING
+#Creates the background
 canvas = tk.Canvas(root,height=600, width=600, bg="#FFC0CB")
 canvas.pack() #Runs the background
 
@@ -63,22 +60,9 @@ for app in apps: #uses the pre-existing save.txt
     label = tk.Label(frame, text=app)
     label.pack()
 
-root.mainloop() #starts everything
+root.mainloop() #Runs everything
 
 if bool_erase == 0: #check if erase files is used
-    with open('save.txt', 'w') as f: #Save text files
+    with open('save.txt', 'w') as f: #Open save.txt
         for app in apps:
-            f.write(app +',')
-
-
-
-    
-
-
-
-
-
-
-
-
-
+            f.write(app +',') #Write into save.txt
