@@ -5,6 +5,13 @@ import os #allows us to run apps
 root = tk.Tk() #holds everything
 apps = []
 
+
+if os.path.isfile('save.txt'): #checks if save file already exists
+    with open('save.txt','r') as f:
+        tempApps = f.read() #reads into savefile
+        tempApps = tempApps.split(',') #split applications when there's a comma
+        apps = [x for x in tempApps if x.strip()] #Erases extra whitespace and nonexisting apps
+        
 def AddApps():
     for files in frame.winfo_children():
         files.destroy() #freshes added files
@@ -37,9 +44,15 @@ RunApps = tk.Button(root, text ="Run Apps",padx=10,pady=5,
                     fg="white",bg="#000000", command=RunApps)
 RunApps.pack()
 
+for app in apps:
+    label = tk.Label(frame, text=app)
+    label.pack()
 
 root.mainloop() #starts everything
 
+with open('save.txt', 'w') as f: #Save text files
+    for app in apps:
+        f.write(app +',')
 
 
 
