@@ -4,7 +4,7 @@ The guide to this project can be found [here](https://docs.google.com/document/d
 
 ---
 
-+ Feel free to clone this project or use it as an example for your own code
++ Feel free to clone this project or use it as an example for your own code.
 
 + The code in this project is definetly not perfect, but it's up to your creativity to do whatever you want (change the colors, mess with the dimensions, implement your own functions, etc.)
 
