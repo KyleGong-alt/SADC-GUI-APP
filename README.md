@@ -1,1 +1,1 @@
-ez
+![alt text](http://url/to/finishedproduct.png)
