@@ -1,1 +1,1 @@
-![alt text](http://url/to/finishedproduct.png)
+![alt text](http://url/to/Finishedproduct.png)
