@@ -7,14 +7,16 @@ apps = [] #initalize array for apps
 
 bool_erase = 0 #initalize bool for erasing files
 
+
 if os.path.isfile('save.txt'): #checks if save file already exists
     with open('save.txt','r') as f: #open save file
         tempApps = f.read() #reads into savefile
         tempApps = tempApps.split(',') #split applications when there's a comma
+        # print (tempApps)
         apps = [x for x in tempApps if x.strip()] #Erases extra whitespace and nonexisting apps
-        
-def AddApps(): 
-    for files in frame.winfo_children(): #
+        # print ("\n", apps)
+def Addfunction(): 
+    for files in frame.winfo_children(): 
         files.destroy() #refreshes added files
     filename = filedialog.askopenfilename(initialdir="/", title="Select a File", #title on the top
                                           filetypes=(("Executables","*.exe"), ("all files","*.*"))) #Can only run executables or all files, 
@@ -24,11 +26,11 @@ def AddApps():
         label = tk.Label(frame,text= app, bg="gray") #prints out the text
         label.pack()
 
-def RunApps():
+def Runfunction():
     for app in apps:
         os.startfile(app) #Starts applications
 
-def EraseSave():
+def Erasefunction():
     global bool_erase #make a global variable
     for files in frame.winfo_children():
         files.destroy() #refreshes added files
@@ -45,15 +47,15 @@ frame = tk.Frame(root,bg="white")
 frame.place(relwidth = 0.8, relheight=0.6, relx=0.1, rely=0.1)
 
 OpenFiles=tk.Button(root, text ="Open File",padx=10,pady=5, #UI for the buttons
-                    fg="white",bg="#000000", command=AddApps)
+                    fg="white",bg="#000000", command=Addfunction)
 OpenFiles.pack()
 
 RunApps = tk.Button(root, text ="Run Apps",padx=10,pady=5,
-                    fg="white",bg="#000000", command=RunApps)
+                    fg="white",bg="#000000", command=Runfunction)
 RunApps.pack()
 
 EraseSave = tk.Button(root, text ="Erase files",padx=10,pady=5,
-                    fg="white",bg="#000000", command=EraseSave)
+                    fg="white",bg="#000000", command=Erasefunction)
 EraseSave.pack()
 
 for app in apps: #uses the pre-existing save.txt
